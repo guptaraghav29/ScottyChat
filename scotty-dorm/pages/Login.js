@@ -9,8 +9,11 @@ export default function Login() {
             </Head>
             <Navigation></Navigation>
             <h1> Login </h1>
-            <p> Username </p>
-            <p> Password </p>
+            <div>
+                <p> Username </p>
+                <p> Password </p>
+            </div>
+        
         </div>
     )
 }

@@ -4,7 +4,7 @@ import Link from 'next/link'
 function Navigation(props) {
     return (
         <div className="navigation">
-            <nav class="navbar navbar-expand navbar-light bg-white">
+            <nav class="navbar navbar-expand navbar-light">
                 <div class="container">
                     <div id="leftBar">
                         <Link href="/">

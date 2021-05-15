@@ -9,10 +9,12 @@ export default function Dorms() {
             </Head>
             <Navigation></Navigation>
             <h1> Dorms </h1>
-            <p> A-I </p>
-            <p> Lothian </p>
-            <p> Pentland </p>
-            <p> Dundee </p>
+            <div>
+                <p> A-I </p>
+                <p> Lothian </p>
+                <p> Pentland </p>
+                <p> Dundee </p>
+            </div>
         </div>
     )
 }
