@@ -1,17 +1,21 @@
 {{!-- By Gary Chen --}}
 <div class="container">
+    <div class="homeStyle">
    <h1> Home </h1>
+    </div>
 
 
 <form action="/create" method="post">
+    <div class="buttonStyle">
     <button type="submit" >Create New Chat Room</button>
+    </div>    
 </form>
 
-<h2> Join any chatroom below </h2>
+<h2 style=text-align:center> Join any chatroom below </h2>
 <div id="chatrooms">
     <ul>
         {{#each rooms}}
-            <li id="chatroom"><a href="/{{{this.name}}}">{{ this.name }}</a></li>
+            <li style=text-align:center id="chatroom"><a href="/{{{this.name}}}">{{ this.name }}</a></li>
         {{/each}}
     </ul>
 </div>

@@ -1,7 +1,7 @@
 
 .container {
     /* background font:srani; */
-    background: linear-gradient(#9EB1E9, pink,skyblue );
+    background: linear-gradient(#c2cdee,rgb(245, 211, 216) );
     margin: 10px;
     padding: 100px;
     width:80%;
@@ -13,10 +13,21 @@
     }
 
 
+    .homeStyle{
+        text-align: center;
+        font-style: arial;  
+        color: black;  
+    }
+
+    .buttonStyle{
+        text-align: center;
+    }
+
     /*  */
 #chatroom {
-    list-style: disc;
-    padding: 5px;
+   list-style: disc;
+    
+    text-align:center;
 }
 
 #roomPage {
@@ -31,7 +42,7 @@
     border-style: solid;
     padding: 5px;
     /*  */
-    font: 'Lato', sans-serif;
+    
 }
 
 .messageContainer {
@@ -72,3 +83,25 @@ button {
     justify-content: center;
 }
 
+/* Room CSS */
+ 
+.roomContainer {
+    /* background font:srani; */
+    background: whitesmoke;
+    margin: 10px;
+    padding: 100px;
+    width:80%;
+    padding-right:10px; 
+    padding-left:10px; 
+    margin-right:auto;
+    margin-left:auto
+  
+ }
+
+
+.chat-search-box {
+    -webkit-border-radius: 3px 0 0 0;
+    -moz-border-radius: 3px 0 0 0;
+    border-radius: 3px 0 0 0;
+    padding: .75rem 1rem;
+} 
