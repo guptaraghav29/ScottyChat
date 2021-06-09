@@ -1,7 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+
+.container {
+    /* background font:srani; */
+    background: linear-gradient(#9EB1E9, pink,skyblue );
+    margin: 10px;
+    padding: 100px;
+    width:80%;
+    padding-right:10px; 
+    padding-left:10px; 
+    margin-right:auto;
+    margin-left:auto
+  
+    }
 
 
-
+    /*  */
 #chatroom {
     list-style: disc;
     padding: 5px;
