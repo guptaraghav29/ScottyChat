@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+
+
+
+#chatroom {
+    list-style: disc;
+    padding: 5px;
+}
+
+#roomPage {
+    align-items: center;
+}
+
+.messages {
+    min-width: 400px;
+    min-height: 400px;
+    max-height: 400px;
+    overflow:auto;
+    border-style: solid;
+    padding: 5px;
+    /*  */
+    font: 'Lato', sans-serif;
+}
+
+.messageContainer {
+    display: flex;
+    min-width: 100%;
+    min-height: 20px;
+    max-height: 80px;
+}
+
+.message{
+    color: black;
+}
+
+.username{
+    color: red;
+}
+
+.messageDate{
+    padding-top: 4px;
+    font-size: 70%;
+    text-align: center;
+    color: gray
+}
+
+#userInput, #nickname {
+    min-width: 300px;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+button {
+    min-height: 36px;
+    padding-top: 2px;
+}
+
+.inputBox {
+    display:flex;
+    justify-content: center;
+}
+
