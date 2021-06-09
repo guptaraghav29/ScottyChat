@@ -1,17 +1,23 @@
 {{!-- By Gary Chen --}}
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
+
 <div class="container">
-    <div class="homeStyle">
+    <div class="homeStyle" style=" font-family:Helvetica, Verdana, sans-serif">
    <h1> Home </h1>
     </div>
 
 
 <form action="/create" method="post">
-    <div class="buttonStyle">
-    <button type="submit" >Create New Chat Room</button>
-    </div>    
-</form>
+    <div class="buttonStyle"> 
+       
+    <button type="submit" >Create New Chat Room</button> 
+</form> 
+    </a>
+    </div>  
 
-<h2 style=text-align:center> Join any chatroom below </h2>
+
+<h2 style="text-align:center; font-family:Helvetica, Verdana, sans-serif"> Join any chatroom below </h2>
 <div id="chatrooms">
     <ul>
         {{#each rooms}}
@@ -33,3 +39,4 @@
         location.reload(true);
     }
 </script>
+</div>
