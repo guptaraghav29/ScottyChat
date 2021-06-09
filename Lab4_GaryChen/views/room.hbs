@@ -8,6 +8,7 @@
             <div class="messageContainer">
                 <div class="username">{{userName}}</div>
                 <div class="messageDate">&nbsp;{{date}}</div>
+                <img id="trash" src="/images/trash.jpg">
             </div>
             <div class="message"> 
                 &ensp;
@@ -18,16 +19,8 @@
 
     {{!-- This div contains an input box and a send button --}}
     <div class="inputBox">
-        {{!-- The user must enter a username BEFORE they can start chatting --}}
-        {{#if username_set }}
-            <input id="userInput" name="message" placeholder="Type something...">
-            <button id="send" type="submit" >Send</button>
-        {{else}}
-            <form method="post" action="/usernameSet">
-                <input id="nickname" name="username" placeholder="Type a nickname...">
-                <button type="submit" >Set nickname</button>
-            </form>
-        {{/if}}
+        <input id="userInput" name="message" placeholder="Type something...">
+        <button id="send" type="submit" >Send</button>
     </div>
 </div>
 
@@ -38,11 +31,6 @@
 <script>
     document.querySelector('#userInput').addEventListener("input", grabMessage) //Grab the input box
     document.querySelector('#send').addEventListener("click", sendMessage)      //Grab the send button
-
-    //Grabbing the info from the cookies
-    var cookies  = document.cookie.split(';')
-    var roomName = cookies[0].split('=')[1]
-    var username = cookies[1].split('=')[1]
 
     //This is where input box's value will be stored in
     var newMessage = ""

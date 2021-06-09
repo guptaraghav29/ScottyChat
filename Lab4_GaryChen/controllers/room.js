@@ -62,7 +62,6 @@ function getRoom(request, response){
                 {
                     name: request.params.roomName,
                     username: "",
-                    username_set: nameSet,
                     messages: newRoom
                 }
             )
@@ -125,7 +124,6 @@ function showAllMessage(request, response){
             {
                 name: request.params.roomName,
                 username: "",
-                username_set: nameSet,
                 messages: newRoom
             }
         )
@@ -138,6 +136,5 @@ function showAllMessage(request, response){
 module.exports = {
     getRoom,
     createRoom,
-    // usernameSet,
     showAllMessage
 }

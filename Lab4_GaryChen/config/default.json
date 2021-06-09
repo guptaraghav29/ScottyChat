@@ -1,4 +1,4 @@
 {
-    "mongoURI" : "",
+    "mongoURI" : "mongodb+srv://Testuser:testpassword@cluster0.meozj.mongodb.net/TestDB?retryWrites=true&w=majority",
     "TOP-SECRET": "CS110WEBDEVELOPMENT"
 }

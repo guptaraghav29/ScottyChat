@@ -34,7 +34,6 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(session({
-
     secret: config.get('TOP-SECRET'),
     resave: false,
     saveUninitialized: false
@@ -75,11 +74,12 @@ app.get('/register', redirectHome, registerHandler.signupPage)
 app.post('/register', registerHandler.signup)
 
 app.get('/login', redirectHome, registerHandler.loginPage)
+app.post('/login', redirectHome, registerHandler.login)
 
 //We can delete this b/c only users who signed up can use the chatroom, so we don't need to check if they entered a username
 // app.post('/usernameSet', roomHandler.usernameSet); 
 
-app.get('/:roomName/messages', redirectRegister, roomHandler.showAllMessage);
-app.get('/:roomName', redirectRegister, roomHandler.getRoom);
+app.get('/:roomName/messages', roomHandler.showAllMessage);
+app.get('/:roomName', roomHandler.getRoom);
 
 server.listen(port, () => console.log(`Server listening on http://localhost:${port}`));

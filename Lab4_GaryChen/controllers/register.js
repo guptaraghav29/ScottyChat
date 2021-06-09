@@ -14,18 +14,18 @@ async function signup( req, res ) {
     var email = req.body.email
     var birthday = new Date( req.body.birthday )
     var phone = req.body.phone
-    const salt = await bcrypt.genSalt(10)
-    var password = await bcrypt.hash(req.body.password, salt)
+    var password = await bcrypt.hash(req.body.password, 10)
 
     var result = await Users.findOne({
-        first: first, 
-        last: last,
-        email: email})
+        email: email,
+        password: password
+        })
 
     console.log("HELLO")
 
     if( result ){ 
         //User already exsits/
+        console.log("User already exists")
         res.render('register', {err: "User already exists."})
     } else {
         //User doesn't exist, then sign them up!
@@ -56,8 +56,30 @@ function loginPage(req, res) {
     res.render('login')
 }
 
+async function login(req, res) {
+    var email = req.body.email
+    var password = req.body.password
+
+    var result = await Users.findOne({ email: email })
+    if( result ){
+        //User is found in the database. Then, log them in.
+        console.log("Found a email in LOGIN")
+        if( await bcrypt.compare( password, result.password )){
+            req.session.email = result.email
+            res.redirect('/')
+        } else {
+            res.redirect('login', { err: "Password or Email is invalid"})
+        }
+    } else {
+        //User is not found in the database. 
+        console.log("Didn't find a user in LOGIN")
+        res.redirect('login', { err: "Password or Email is invalid"})
+    }
+}
+
 module.exports = {
     signupPage,
     signup,
-    loginPage
+    loginPage,
+    login
 }
