@@ -75,6 +75,7 @@ app.post('/register', registerHandler.signup)
 
 app.get('/login', redirectHome, registerHandler.loginPage)
 app.post('/login', redirectHome, registerHandler.login)
+app.post('/logout', registerHandler.logout)
 
 //We can delete this b/c only users who signed up can use the chatroom, so we don't need to check if they entered a username
 // app.post('/usernameSet', roomHandler.usernameSet); 

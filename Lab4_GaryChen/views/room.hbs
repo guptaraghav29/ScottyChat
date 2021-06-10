@@ -8,7 +8,7 @@
             <div class="messageContainer">
                 <div class="username">{{this.username.first}}</div>
                 <div class="messageDate">&nbsp;{{date}}</div>
-                <img class="trash" src="/images/trash.jpg" name="{{{date}}}" alt="{{{userID}}}">
+                <img class="trash" src="/images/trash.jpg" name="{{{message}}}" alt="{{{userID}}}">
             </div>
             <div class="message"> 
                 &ensp;
@@ -19,8 +19,10 @@
 
     {{!-- This div contains an input box and a send button --}}
     <div class="inputBox">
-        <input id="userInput" name="message" placeholder="Type something...">
-        <button id="send" type="submit" >Send</button>
+        <form type="submit">
+            <input id="userInput" name="message" placeholder="Type something...">
+            <button id="send"  >Send</button>
+        </form>
     </div>
 </div>
 
@@ -29,7 +31,9 @@
 {{!-- Socket.io --}}
 <script src="https://cdn.socket.io/3.0.0/socket.io.js"></script>
 <script>
-    document.querySelector('#userInput').addEventListener("input", grabMessage) //Grab the input box
+    var input = document.querySelector('#userInput')
+        input.addEventListener("input", grabMessage) //Grab the input box
+        input.focus()
     document.querySelector('#send').addEventListener("click", sendMessage)      //Grab the send button
     document.querySelectorAll(".trash").forEach( item => item.addEventListener("click", confirmTrash))
 
@@ -74,13 +78,14 @@
     function confirmTrash( event ){
         var confirmDelete = confirm("Are you sure you want to delete this message?")
         if( confirmDelete ){
-            var date = event.target.name
+            newMessage = event.target.name
             var userID = event.target.alt
 
             socket.emit('deleteMessage', {
                 userID: userID,
-                date: date,
-                sessionUserID: sessionUserID
+                sessionUserID: sessionUserID,
+                roomName: roomName,
+                message:  newMessage,
             })
         }
     }
@@ -89,13 +94,16 @@
     //Each time socket detects "newMessage" event from the server, it will refresh the page.
     const socket = io('http://localhost:8080')
     socket.on('newMessage', data => {
+        location.reload()
         console.log(`New message received for chatroom ${roomName}. Refreshing page...`)
-        //location.reload()
     })
 
     socket.on('deleteRejected', _ => {
         alert("You cannnot delete other's messages.")
-        //location.reload()
+    })
+
+    socket.on('deleteMessage', _ => {
+        location.reload()
     })
     //This line automatically scrolls to the bottom of the message box each time this page is loaded.
     document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight

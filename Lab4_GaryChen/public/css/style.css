@@ -28,6 +28,20 @@
     filter: opacity(60%);
 }
 
+.header {
+    display: flex;
+}
+
+#logout {
+    position: absolute;
+    right: 0;
+    
+    margin-right: 10px;
+}
+
+#warn {
+    color: red;
+}
 
 .messageContainer {
     display: flex;

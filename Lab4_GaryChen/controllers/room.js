@@ -10,10 +10,10 @@ io.on('connection', socket => {
     console.log(`A user is connected.`)
     //When socket receives "newMessage" event from the client, it will push message and 
     //username into the database for the current chatroom.
-    socket.on("newMessage", async data => {
+    socket.on("newMessage", data => {
         console.log("Received new mesage.")
         if( socket.message != null || data.message !== "" ){
-            User.findById( data.sessionUserID ).then( user => {
+            User.findById( mongoose.Types.ObjectId(data.sessionUserID) ).then( user => {
                 var first = user.first
                 var last = user.last
                 var userID = mongoose.Types.ObjectId(user._id)
@@ -42,31 +42,31 @@ io.on('connection', socket => {
     socket.on("deleteMessage", data => {
         console.log("Received delete message.")
         User.findById( data.sessionUserID ).then( user => {
-            var first = user.first
-            var last = user.last
-            var userID = user._id.toString()
+            var userID = user._id
+            console.log(`message: ${data.message}`)
 
-            if( userID !== data.sessionUserID ){
+            if( userID.toString() !== data.userID ){
                 io.emit("deleteRejected")
             } else {
-                Room.updateOne(
+                Room.findOneAndUpdate(
                     { name: data.roomName },
                     { $pull: 
-                        { messages: [{
-                            userID : data.sessionUserID,
-                            date: data.date
-                        }]}
+                        { messages: {
+                            userID : userID,
+                            message: data.message }
+                        }
                     }
-                ).then( _ => io.emit('deleteMessage')
-                ).catch( err => console.log(err))
+                ).then( data => {
+                    console.log(`Deleted message.`)
+                    io.emit('deleteMessage')
+                }).catch( err => console.log(err))
             }
-        })
+        }).catch(err => console.log(err))
     })
 })
 
 //GET request to display existing chat room
 function getRoom(request, response){
-
     //Use the chat room ID to fetch corresponding document from database
     Room.findOne({ name: request.params.roomName })
         .lean()
