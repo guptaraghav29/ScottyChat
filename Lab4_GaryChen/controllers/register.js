@@ -21,8 +21,6 @@ async function signup( req, res ) {
         password: password
         })
 
-    console.log("HELLO")
-
     if( result ){ 
         //User already exsits/
         console.log("User already exists")
@@ -44,7 +42,6 @@ async function signup( req, res ) {
             } else {
                 //Successful saving
                 req.session.email = email
-                req.session.name = first
                 console.log(`Success! Email: ${req.session.name} and name: ${req.session.name}`)
                 res.redirect('/')
             }
@@ -66,6 +63,12 @@ async function login(req, res) {
         console.log("Found a email in LOGIN")
         if( await bcrypt.compare( password, result.password )){
             req.session.email = result.email
+            req.session.userID = result._id.toString()
+            res.cookie('sessionUserId', result._id.toString())
+
+            console.log( `resultID: ${result._id}`)
+            console.log( `cookieID: ${req.cookies.sessionUserId}` )
+
             res.redirect('/')
         } else {
             res.redirect('login', { err: "Password or Email is invalid"})
@@ -77,7 +80,7 @@ async function login(req, res) {
     }
 }
 
-module.exports = {
+module.exports = { 
     signupPage,
     signup,
     loginPage,

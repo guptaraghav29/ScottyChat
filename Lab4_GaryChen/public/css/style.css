@@ -16,16 +16,18 @@
     padding: 5px;
 }
 
-#trash {
-    width: 3%;
-    height: 3%;
+.trash {
+    vertical-align: baseline;
+    width: 4%;
+    height: 4%;
     filter: opacity(20%);
-    transition: 1s;
+    transition: 0.7s;
 }
 
-#trash:hover {
+.trash:hover {
     filter: opacity(60%);
 }
+
 
 .messageContainer {
     display: flex;
