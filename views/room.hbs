@@ -1,0 +1,82 @@
+<div class="roomContainer">
+    <div class="chatList">chat List/ with user profile </div> 
+            <div id="chatRoomPage">
+         <div class="chatRoomHead"> 
+    <h1> Welcome to Chat Room {{ name }}! </h1></div>
+
+    {{!-- This div contains all messages for the current chatroom --}}
+    <div class="chatMessagesContainer"> 
+        {{!-- Using handlebars syntax to display all messages --}}
+        {{#each messages}}
+            <div class="messageContainer">
+                
+
+                <div class="username">{{userName}}</div>
+                <div class="messageDate">&nbsp;{{date}}</div>
+
+            </div>
+            <div class="message"> 
+                &ensp;
+                {{message}} 
+                    
+            </div>
+        {{/each}}
+                    
+    </div>
+
+    {{!-- This div contains an input box and a send button --}}
+    <div class="inputBox">
+        {{!-- The user must enter a username BEFORE they can start chatting --}}
+        {{#if username_set }}
+            <input id="userInput" name="message" placeholder="Type something...">
+            <button id="send" type="submit" >Send</button>
+        {{else}}
+            <form method="post" action="/usernameSet">
+                <input id="nickname" name="username" placeholder="Type a nickname...">
+                <button type="submit" >Set nickname</button>
+            </form>
+        {{/if}}
+    </div>
+</div>
+</div>
+
+
+
+{{!-- Socket.io --}}
+<script src="https://cdn.socket.io/3.0.0/socket.io.js"></script>
+<script>
+    document.querySelector('#userInput').addEventListener("input", grabMessage) //Grab the input box
+    document.querySelector('#send').addEventListener("click", sendMessage)      //Grab the send button
+    //Grabbing the info from the cookies
+    var cookies  = document.cookie.split(';')
+    var roomName = cookies[0].split('=')[1]
+    var username = cookies[1].split('=')[1]
+    //This is where input box's value will be stored in
+    var newMessage = ""
+    //Callback function for input box
+    function grabMessage( text ){
+        
+        newMessage = text.target.value
+        console.log(newMessage)
+    }
+    //Callback function for send button
+    function sendMessage( item ) {
+        //Each time the user press send, socket will emit an event and pass
+        //user's message, along with info that is inside the cookies
+        console.log(`msg: ${newMessage}, roomName: ${roomName}, username: ${username}`)
+        socket.emit('newMessage', {
+            message:  newMessage,
+            roomName: roomName,
+            username: username
+        })
+    }
+    //Socket listening
+    //Each time socket detects "newMessage" event from the server, it will refresh the page.
+    const socket = io('http://localhost:8080')
+    socket.on('newMessage', data => {
+        console.log(`New message received for chatroom ${roomName}. Refreshing page...`)
+        location.reload()
+    })
+    //This line automatically scrolls to the bottom of the message box each time this page is loaded.
+    document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight
+</script>
