@@ -13,7 +13,7 @@ io.on('connection', socket => {
     socket.on("newMessage", data => {
         console.log("Received new mesage.")
         if( socket.message != null || data.message !== "" ){
-            User.findById( mongoose.Types.ObjectId(data.sessionUserID) ).then( user => {
+            User.findById( data.sessionUserID ).then( user => {
                 var first = user.first
                 var last = user.last
                 var userID = mongoose.Types.ObjectId(user._id)
@@ -83,8 +83,7 @@ function getRoom(request, response){
             })
 
             //Render the corresponding room.
-            response.render(
-                "room",
+            response.render( "room",
                 {
                     name: request.params.roomName,
                     username: "",

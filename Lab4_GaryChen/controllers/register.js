@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt')
 const Users  = require('../models/User')
 
-
 //GET request
 function signupPage( req, res ) {
     res.render('register')

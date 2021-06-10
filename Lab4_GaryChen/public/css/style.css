@@ -18,8 +18,8 @@
 
 .trash {
     vertical-align: baseline;
-    width: 4%;
-    height: 4%;
+    width: 30px;
+    height: 30px;
     filter: opacity(20%);
     transition: 0.7s;
 }

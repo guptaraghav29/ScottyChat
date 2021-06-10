@@ -77,6 +77,10 @@ app.get('/login', redirectHome, registerHandler.loginPage)
 app.post('/login', redirectHome, registerHandler.login)
 app.post('/logout', registerHandler.logout)
 
+app.get('/forgot', (req, res) => {
+    res.render('forgotPassword')
+})
+
 //We can delete this b/c only users who signed up can use the chatroom, so we don't need to check if they entered a username
 // app.post('/usernameSet', roomHandler.usernameSet); 
 
