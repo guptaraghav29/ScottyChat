@@ -1,8 +1,8 @@
 
 .container {
     /* background font:srani; */
-    background: linear-gradient(rgb(238, 192, 201),#acbdf1);
-    margin: 10px;
+    background: linear-gradient(rgb(243, 190, 200),#b6c5f1);
+      margin: 10px;
     padding: 100px;
     width:80%;
     padding-right:10px; 
@@ -49,7 +49,7 @@
     align-items: center;
     width:80%;
     border-radius: 30px;
-    color: gray;
+    color:gainsboro;
 
 
 }
@@ -58,7 +58,7 @@
     min-width: 1100px;
     min-height: 700px;
     max-height: 700px;
-    overflow:auto;
+   
    margin-left: 420px;
     border-style: solid;
     border-radius: 30px;
@@ -147,7 +147,9 @@ button {
     width:200px;
     float: left;
     font-size: 30px;
-    background-color: rgb(201, 232, 245);
+    background: linear-gradient(rgb(245, 206, 214),#acbdf1);
+   
+    /* background-color: rgb(201, 232, 245); */
 
     min-width: 300px;
     min-height: 700px;
