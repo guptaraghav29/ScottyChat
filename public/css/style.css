@@ -23,16 +23,6 @@
     filter: opacity(60%);
 }
 
-.header {
-    display: flex;
-}
-
-#logout {
-    position: absolute;
-    right: 0;
-    
-    margin-right: 10px;
-}
 
 #warn {
     color: red;
@@ -79,28 +69,6 @@
     display:flex;
     margin-left: 100px;
 }
-.container {
-    /* background font:srani; */
-    background: linear-gradient(rgb(243, 190, 200),#b6c5f1);
-      margin: 10px;
-    padding: 100px;
-    width:80%;
-    padding-right:10px; 
-    padding-left:10px; 
-    margin-right:auto;
-    border-radius: 12px;
-    margin-left:auto;
-    align-items: center;
-    
-    }
-
-    
-
-    .homeStyle{
-        text-align: center;
-        font-style: arial;  
-        color: black;  
-    }
 
     /*  */
 #chatroom {
@@ -120,14 +88,14 @@
 
 #createRoom, #send {
     margin: 10px;
-    padding: 30px;
+    padding: 20px;
     text-align: center;
     display: inline-flex;
   align-items: center; 
     text-transform: uppercase;
     transition: 0.5s;
     background-size: 200% auto;
-    color: white;
+    color: black;
    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
     box-shadow: 0 0 20px #eee;
     border-radius: 10px;
@@ -198,8 +166,6 @@
 /* Room CSS */
 .chatRoomHead{
     text-align: center;
-
-
 }
  
 .roomContainer {
@@ -250,11 +216,12 @@
     box-shadow: 15px 15px rgb(245, 206, 214);
  }
     
-    
+ 
 
 
 
 /* room css end */
+
 
 
 /* CHAT ROOM LIST CSS */
@@ -290,6 +257,66 @@ ul {
   li a:hover {
     font-size: 30px;
   }
+
+
+  .homeContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1190px;
+    height: 600px;
+    align-items: flex-start;
+    padding-top: 60px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 100px;
+  }
+  .leftHome{
+      display: flex;
+      float:left;
+      flex-direction: column;
+  }
+  .rightHome{
+      display:flex;
+      margin-left: 100px;
+      
+      justify-content: space-between;
+      flex-direction: column;
+  }
+  #chatrooms{
+      overflow: auto;
+      width: 300px;
+      height: 500px;
+    margin-left: auto;
+  }
+  #joinRoom{
+    display: flex;
+    padding: 20px;
+    height: 50px;
+    margin-left: auto;
+  }
+
+  #homeHeader{
+      display:flex;
+  }
+  #logout {
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    display: inline-flex;
+  align-items: center; 
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: black;
+   /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    background-position: right center;
+    background: linear-gradient(rgb(243, 190, 200),#b6c5f1);
+    font-size: 15px;
+}
  
   @media screen and (max-width: 1550px) {
     .chatList {
