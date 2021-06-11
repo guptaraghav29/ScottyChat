@@ -1,21 +1,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
 
+<body style="background-image: repeating-radial-gradient(rgb(243, 190, 200),#b6c5f1);"></body>
 
 <div class="roomContainer">
-<div class="chatList">chat List/ with user profile </div> 
 
-<div class="rightChat">
+
 <div class="roomPage">
     <h1 id= "welcomeMessage"> Welcome to Chat Room {{ name }}! </h1>
 
     {{!-- This div contains all messages for the current chatroom --}}
-    
+ <div class="hidescroll">
+     <div class="search">
+            <input id="searchInput" placeholder="Search Messages">
+        </div>
     <div class="messages"> 
         {{!-- Search mesage input field --}}
-        <div class="search">
-            <input id="searchInput">
-        </div>
+        
 
         {{!-- Using handlebars syntax to display all messages --}}
         {{#each messages}}
@@ -32,14 +33,14 @@
         </div>
         {{/each}}
     </div>
-
+</div>
     {{!-- This div contains an input box and a send button --}}
     <div class="inputBox">
         <form type="submit">
             <input id="userInput" name="message" placeholder="Type something...">
             <button id="send"  >Send</button>
         </form>
-    </div>
+
 </div>
 
 

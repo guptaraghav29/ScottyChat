@@ -1,15 +1,24 @@
-<div class="header">
-    <h1> Home </h1>
-    <form action="/logout" method="post">
-        <button id="logout" type="submit" >Log Out</button>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<body style="background-image: repeating-radial-gradient(rgb(243, 190, 200),#b6c5f1);">
+<div class = "homeContainer">    
+<div class= "leftHome">
+    
+    <h1 id= "homeHeader">Home</h1> 
+    
+
+    <form action="/create" method="post">
+        <button id ="createRoom" type="submit" >Create New Chat Room</button>
     </form>
+
+    <form action="/logout" method="post">
+        <button id="logoutHome" type="submit" >Log Out</button>
+    </form> 
+            
 </div>
 
-<form action="/create" method="post">
-    <button type="submit" >Create New Chat Room</button>
-</form>
-
-<h2> Join any chatroom below </h2>
+<div class="rightHome">
+<h2 id= "joinRoom"> Join any chatroom below </h2>
 <div id="chatrooms">
     <ul>
         {{#each rooms}}
@@ -17,7 +26,9 @@
         {{/each}}
     </ul>
 </div>
-
+</div>
+</div>
+</body>
 <script>
     //This is the only script for the home page.
     //Performance.getEntriesByType("navigation") returns an array of objects.
