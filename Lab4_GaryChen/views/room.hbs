@@ -12,16 +12,24 @@
     {{!-- This div contains all messages for the current chatroom --}}
     
     <div class="messages"> 
+        {{!-- Search mesage input field --}}
+        <div class="search">
+            <input id="searchInput">
+        </div>
+
         {{!-- Using handlebars syntax to display all messages --}}
         {{#each messages}}
+        <div class="allMessages">
             <div class="messageContainer">
                 <div class="username">{{this.username.first}}</div>
                 <div class="messageDate">&nbsp;{{date}}</div>
-                <img class="trash" src="/images/trash.jpg" name="{{{date}}}" alt="{{{userID}}}">
+                <img class="trash" src="/images/trash.jpg" name="{{{message}}}" alt="{{{userID}}}">
+                <img class="edit" src="/images/edit.png" name="{{{message}}}" alt="{{{userID}}}">
             </div>
             <div class="message"> 
                 {{message}} 
             </div>
+        </div>
         {{/each}}
     </div>
 
@@ -35,14 +43,18 @@
 </div>
 
 
+
 {{!-- Socket.io --}}
 <script src="https://cdn.socket.io/3.0.0/socket.io.js"></script>
 <script>
+    var childrenMessage = document.querySelectorAll(".allMessages")
     var input = document.querySelector('#userInput')
         input.addEventListener("input", grabMessage) //Grab the input box
         input.focus()
     document.querySelector('#send').addEventListener("click", sendMessage)      //Grab the send button
     document.querySelectorAll(".trash").forEach( item => item.addEventListener("click", confirmTrash))
+    document.querySelectorAll(".edit").forEach( item => item.addEventListener("click", confirmEdit))
+    document.querySelector("#searchInput").addEventListener('input', searchMessage)
 
     //Grabbing the info from the cookies
     var roomName = ""
@@ -88,12 +100,47 @@
         if( confirmDelete ){
             newMessage = event.target.name
             var userID = event.target.alt
-
             socket.emit('deleteMessage', {
                 userID: userID,
                 sessionUserID: sessionUserID,
                 roomName: roomName,
                 message:  newMessage,
+            })
+        }
+    }
+
+    function confirmEdit( event ){
+        console.log("CLICK EIDTING")
+        var editInput = prompt("Please enter new message: ", "New Message Here...")
+        if( editInput != null || editInput !== "" ){
+            newMessage = event.target.name
+            var userID = event.target.alt
+            socket.emit('editMessage', {
+                userID: userID,
+                sessionUserID: sessionUserID,
+                roomName: roomName,
+                message:  newMessage,
+                newMessage: editInput
+            })
+        }
+    }
+
+    var searchText = ""
+    function searchMessage( event ){
+        searchText = event.target.value.trim().toLowerCase()
+        //childrenMessage[0].querySelector('.message').innerHTML
+        if( searchText !== "" ){
+            childrenMessage.forEach( message => {
+                var word = message.querySelector('.message').innerHTML.toLowerCase().split(/\W+/)
+                if( word.some( keyword => keyword === searchText )){
+                    message.style.display = "block"
+                }else{
+                    message.style.display = "none"
+                }
+            })
+        }else if( searchText === ""){
+            childrenMessage.forEach( message => {
+                message.style.display = "block"
             })
         }
     }
@@ -106,10 +153,15 @@
         console.log(`New message received for chatroom ${roomName}. Refreshing page...`)
     })
 
+    socket.on('deleteMessage', _ => location.reload() )
+
     socket.on('deleteRejected', _ =>  alert("You cannnot delete other's messages."))
 
-    socket.on('deleteMessage', _ => location.reload() )
-    
+    socket.on('editMessage', _ => location.reload() )
+
+    socket.on('editRejected', _ => alert("You cannnot edit other's messages."))
+
+
     //This line automatically scrolls to the bottom of the message box each time this page is loaded.
     document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight
 </script>
