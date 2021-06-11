@@ -1,0 +1,41 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<body style="background-image: repeating-radial-gradient(rgb(243, 190, 200),#b6c5f1);">
+<div class = "homeContainer">    
+<div class= "leftHome">
+    
+    <h1 id= "homeHeader">Home</h1> 
+    <form action="/logout" method="post">
+        <button id="logout" type="submit" >Log Out</button>
+    </form> 
+
+    <form action="/create" method="post">
+        <button id ="createRoom" type="submit" >Create New Chat Room</button>
+    </form>
+            
+</div>
+
+<div class="rightHome">
+<h2 id= "joinRoom"> Join any chatroom below </h2>
+<div id="chatrooms">
+    <ul>
+        {{#each rooms}}
+            <li id="chatroom"><a href="/{{{this.name}}}">{{ this.name }}</a></li>
+        {{/each}}
+    </ul>
+</div>
+</div>
+</div>
+</body>
+<script>
+    //This is the only script for the home page.
+    //Performance.getEntriesByType("navigation") returns an array of objects.
+    //By accessing the first element's type, [0].type, the browser can check
+    //how the page was accessed. For this script, I am checking if the current
+    //page was accessed by using history traversal methods (going back/forward a 
+    //page in history), and if so, I will refresh the page so I can show you the 
+    //current list of chat rooms.
+    if( performance.getEntriesByType("navigation")[0].type === "back_forward" ){
+        location.reload(true);
+    }
+</script>
