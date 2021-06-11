@@ -18,7 +18,7 @@ io.on('connection', socket => {
                 var last = user.last
                 var userID = mongoose.Types.ObjectId(user._id)
 
-                Room.updateOne(
+                Room.findOneAndUpdate(
                     { name: data.roomName }, 
                     { $push: 
                         { messages: [{

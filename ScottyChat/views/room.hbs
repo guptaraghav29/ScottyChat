@@ -36,11 +36,11 @@
 </div>
     {{!-- This div contains an input box and a send button --}}
     <div class="inputBox">
-        <form type="submit">
+        
             <input id="userInput" name="message" placeholder="Type something...">
-            <button id="send"  >Send</button>
-        </form>
-
+            <button type="button" id="send"  >Send</button>
+        
+    </div>
 </div>
 
 
@@ -56,6 +56,7 @@
     document.querySelectorAll(".trash").forEach( item => item.addEventListener("click", confirmTrash))
     document.querySelectorAll(".edit").forEach( item => item.addEventListener("click", confirmEdit))
     document.querySelector("#searchInput").addEventListener('input', searchMessage)
+    document.querySelector("#userInput").addEventListener('keydown', sendMessageEnter)
 
     //Grabbing the info from the cookies
     var roomName = ""
@@ -93,6 +94,14 @@
             roomName: roomName,
             sessionUserID: sessionUserID
         })
+    }
+
+    function sendMessageEnter( event ){
+        console.log("ENter press")
+        if( event.key === "Enter" ){
+            event.preventDefault()
+            document.getElementById("send").click()
+        }
     }
 
     //Callback function for deleteing message
@@ -151,7 +160,7 @@
     const socket = io('http://localhost:8080')
     socket.on('newMessage', data => {
         console.log(`New message received for chatroom ${roomName}. Refreshing page...`)
-        fetch(`/${roomName}`)
+        location.reload()
     })
 
     socket.on('deleteMessage', _ => location.reload() )
