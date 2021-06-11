@@ -63,6 +63,29 @@ io.on('connection', socket => {
             }
         }).catch(err => console.log(err))
     })
+
+    socket.on("editMessage", data => {
+        console.log("Received edit message.")
+        User.findById( data.sessionUserID ).then( user => {
+            var userID = user._id
+            console.log(`message: ${data.message}`)
+
+            if( userID.toString() !== data.userID ){
+                io.emit("editRejected")
+            } else {
+                Room.findOneAndUpdate(
+                    { name: data.roomName, 
+                      messages: { $elemMatch: { userID: data.userID, message: data.message } } },
+                    { $set: {
+                         'messages.$.message': data.newMessage
+                    }}
+                ).then( data => {
+                    console.log(`Edited message.`)
+                    io.emit('editMessage')
+                }).catch( err => console.log(err))
+            }
+        }).catch(err => console.log(err))
+    })
 })
 
 //GET request to display existing chat room
