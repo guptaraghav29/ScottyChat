@@ -1,3 +1,8 @@
 {
+<<<<<<< HEAD
     "mongoURI" : "mongodb+srv://claire:WebDevelop21@cluster0.ybfof.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+=======
+    "mongoURI" : "",
+    "TOP-SECRET": "CS110WEBDEVELOPMENT"
+>>>>>>> 2477ff60ada49ac9378a1dffe6f77db4f601178e
 }
