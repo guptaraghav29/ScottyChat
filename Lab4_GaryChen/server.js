@@ -159,8 +159,6 @@ app.post('/api/register', async (req, res) => {
 		console.log(error)
 		return res.json({status:"error"})
 	}
-
-
 })
 
 

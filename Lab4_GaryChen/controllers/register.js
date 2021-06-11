@@ -71,16 +71,16 @@ function forgotPassword(req, res) {
 }
 
 async function changePassword(event) {
-    event.preventDefault()
-    const email = document.getElementById('email').value
-    const password = document.getElementById('password').value
+    var email = req.body.email
+    var password = req.body.password
 
-    const result = await fetch('/api/change-password', {
+    var result = await fetch('/api/change-password', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+            email: email,
             newpassword: password,
             token: localStorage.getItem('token')
         })
@@ -88,7 +88,8 @@ async function changePassword(event) {
 
     if (result.status === 'ok') {
         // everythign went fine
-        alert('Success')
+        alert('Success'),
+        res.redirect('/login')
     } else {
         alert(result.error)
     }
