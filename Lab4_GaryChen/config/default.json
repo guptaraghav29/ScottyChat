@@ -1,4 +1,4 @@
 {
-    "mongoURI" : "",
+    "mongoURI" : "mongodb+srv://user1:capalot@cluster0.4jizu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     "TOP-SECRET": "CS110WEBDEVELOPMENT"
 }
