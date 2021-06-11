@@ -280,7 +280,10 @@ ul {
   .rightHome{
       display:flex;
       margin-left: 100px;
-      
+      padding:40px;
+      box-shadow: 15px 15px #b6c5f1;
+    border-style: solid;
+    border-radius: 30px;
       justify-content: space-between;
       flex-direction: column;
   }
@@ -299,6 +302,7 @@ ul {
 
   #homeHeader{
       display:flex;
+      margin: 10px;
   }
   #logout {
     margin: 10px;
