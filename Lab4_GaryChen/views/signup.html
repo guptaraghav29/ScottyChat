@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Sign Up</title>
+</head>
+
+<body style="background: linear-gradient(rgb(243, 190, 200),#b6c5f1);">
+    <div style="text-align: center;">
+        <h1 class="display-1">Sign Up</h1>
+
+        <form id="reg-form">
+            <label> Username: </label>
+            <input type="text" id="username" placeholder="user123" />
+            <label> Password: </label>
+            <input type="password" id="password" placeholder="password" />
+            <br>
+            <label> Email: </label>
+            <input type="text" id="email" placeholder="john@appleseed.com" />
+            <br>
+            <label> First Name: </label>
+            <input type="text" id="firstname" placeholder="First Name" />
+            <label> Last Name: </label>
+            <input type="text" id="lastname" placeholder="Last Name" />
+            <br>
+            <br>
+            <label> Date of Birth: </label>
+            <input type="text" id="birthday" placeholder="Date of Birth" />
+            <br>
+            <label> Phone Number: </label>
+            <input type="text" id="phonenumber" placeholder="123456789" />
+            <br>
+            <br>
+            <input type="submit" value="Submit Form" />
+        </form>
+    </div>
+  
+
+    <script>
+        const form = document.getElementById("reg-form")
+        form.addEventListener("submit", registerUser)
+
+        async function registerUser(event) {
+
+            const username = document.getElementById("username").value
+            const password = document.getElementById("password").value
+            const email = document.getElementById("email").value
+            const firstname = document.getElementById("firstname").value
+            const lastname = document.getElementById("lastname").value
+            const birthday = document.getElementById("birhday").value
+            const phonenumber = document.getElementById("phonenumber").value
+
+            const result = await fetch("/api/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                    email,
+                    firstname, 
+                    lastname,
+                    birthday,
+                    phonenumber
+                })
+            }).then((res) => res.json())
+
+            if (result.status === "ok") {
+                altert("success")
+            } else {
+                alert(result.error)
+            }
+
+        }
+    </script>
+
+
+
+</body>
+
+</html>
