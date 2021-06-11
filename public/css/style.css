@@ -48,7 +48,8 @@
 }
 
 .username{
-    color: #b6c5f1;
+    color:black;
+    font-style: bold;
     font-size: 20px;
     font-weight: bold;
 }
@@ -111,19 +112,26 @@
     
 }
 
+.hidescroll{
+    overflow:hidden;
+    border-style: solid;
+    border-radius: 30px;
+}
+
 .messages {
     min-width: 1100px;
     min-height: 700px;
     max-height: 700px;
     justify-content: left;
-    box-shadow: 15px 15px #b6c5f1;
-    border-style: solid;
-    border-radius: 30px;
+    box-shadow: 15px 15px 40px 5px rgba(255, 255, 255, 0.5);
+    
     padding: 20px;
     overflow:auto;
-    /*  */
+    background-color: rgba(255, 255, 255, 0.5);
     
 }
+
+
 
 .messageContainer {
     display: flex;
@@ -179,7 +187,6 @@
     align-items: flex-start;
     padding-top: 60px;
     font-family: 'Montserrat', sans-serif;
-    padding: 100px;
  }
 
  .chat {
@@ -192,7 +199,7 @@
     color: #434651;
  }
 
- .chatList {
+ /* .chatList {
     width:200px;
     float: left;
     font-size: 30px;
@@ -202,19 +209,19 @@
     border-color: black;
     border-style: solid;
     border-radius: 30px;
-    /* background-color: rgb(201, 232, 245); */
+    /* background-color: rgb(201, 232, 245); 
     margin-top: 119px;
     min-width: 300px;
     height: 700px;
     overflow:auto;
-    /* margin-right:400px; */
+    /* margin-right:400px; 
     padding: 20px;
     border-radius: 30px;
     display: flex;
     flex-wrap: wrap;
     align-items: top;
     box-shadow: 15px 15px rgb(245, 206, 214);
- }
+ } */
     
  
 
@@ -260,8 +267,8 @@ ul {
 
 
   .homeContainer{
-    display: flex;
-    justify-content: space-around;
+      display: flex;
+    justify-content: space-evenly;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
@@ -274,24 +281,27 @@ ul {
   }
   .leftHome{
       display: flex;
-      float:left;
+      float:right;
       flex-direction: column;
+      margin-top: 70px;
   }
   .rightHome{
       display:flex;
-      margin-left: 100px;
       padding:40px;
-      box-shadow: 15px 15px #b6c5f1;
     border-style: solid;
     border-radius: 30px;
       justify-content: space-between;
       flex-direction: column;
+      background-color: rgba(255, 255, 255, 0.5);
   }
   #chatrooms{
       overflow: auto;
       width: 300px;
       height: 500px;
-    margin-left: auto;
+    margin: auto;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.5);
   }
   #joinRoom{
     display: flex;
@@ -323,7 +333,13 @@ ul {
 }
  
   @media screen and (max-width: 1550px) {
-    .chatList {
-        min-width: 200px;
+     .hidescroll{
+         min-width: 600px;
+     }
+  }
+
+  @media screen and (max-height: 1550px) {
+     .hidescroll{
+         min-height: 500px;
      }
   }

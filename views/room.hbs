@@ -1,13 +1,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
 
+<body style="background-image: repeating-radial-gradient(rgb(243, 190, 200),#b6c5f1);">
 <div class="roomContainer">
-<div class="chatList">chat List/ with user profile </div> 
+
 <div id="roomPage">
      <h1 id= "welcomeMessage"> Welcome to Chat Room {{ name }}! </h1>
 
     {{!-- This div contains all messages for the current chatroom --}}
-    
+    <div class="hidescroll">
     <div class="messages"> 
         {{!-- Using handlebars syntax to display all messages --}}
         {{#each messages}}
@@ -22,6 +23,7 @@
             </div>
         {{/each}}
     </div>
+    </div>
 
     {{!-- This div contains an input box and a send button --}}
     <div class="inputBox">
@@ -34,7 +36,7 @@
 
 </div>
 </div>
-
+</body>
 
 
 {{!-- Socket.io --}}
