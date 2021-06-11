@@ -28,12 +28,20 @@ io.on('connection', socket => {
                             },
                             message: data.message,
                             userID: userID
-                    }]}}
+                    }]}},
+                    { new: true }
                 ).then( data => {
                     //When it finished updating the database, it will emit "newMessage" to the client
                     //and the client will refresh the page to show new messages.
-                    console.log("Finished pushing new message.")
-                    io.emit('newMessage')
+                    console.log(`Finished pushing new message.`)
+                    io.emit('newMessage', 
+                        { 
+                            newMessage: data.messages[data.messages.length - 1].message,
+                            first: data.messages[data.messages.length - 1].username.first,
+                            date: data.messages[data.messages.length - 1].date.toLocaleTimeString(),
+                            userID: data.messages[data.messages.length - 1].userID
+                        }
+                    )
                 }).catch( err => console.log(err))
             }).catch( err => console.log(err) )
         }

@@ -160,7 +160,17 @@
     const socket = io('http://localhost:8080')
     socket.on('newMessage', data => {
         console.log(`New message received for chatroom ${roomName}. Refreshing page...`)
-        location.reload()
+        var tempChild = document.querySelector(".allMessages").cloneNode(true)
+        tempChild.querySelector(".message").innerHTML = data.newMessage
+        tempChild.querySelector(".username").innerHTML = data.first
+        tempChild.querySelector(".messageDate").innerHTML = data.date
+        tempChild.querySelector(".trash").setAttribute("name", data.newMessage )
+        tempChild.querySelector(".trash").setAttribute("alt", data.userID )
+        tempChild.querySelector(".edit").setAttribute("name", data.newMessage )
+        tempChild.querySelector(".edit").setAttribute("alt", data.userID )
+        document.querySelector(".messages").appendChild(tempChild)
+        document.querySelector('.messages').scrollTop = document.querySelector('.messages').scrollHeight
+        //console.log(`temp: ${tempChild}`)
     })
 
     socket.on('deleteMessage', _ => location.reload() )
