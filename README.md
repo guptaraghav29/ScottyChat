@@ -6,6 +6,7 @@ Hi! Welcome to ScottyChat! This project is for "CS110: Intro to Web Development"
 ## How To Start This Project
 
 - Clone this repository: `git clone https://github.com/CS-UCR/final_project-ccgr.git`
+- Navigate to ScottyChat directory: `cd ScottyChat`
 - Install packages: `npm install` 
 - Navigate to `config/default.json` and paste your own MongoDB access link.
 - Start the server: `npm start`
