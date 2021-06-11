@@ -24,7 +24,6 @@ const JWT_SECRET="jsdjfsjfksdfjhsdjfhdsfkjsdhf87879837937987*&&%^$%$^&^&^&^ksjhf
 const homeHandler = require('./controllers/home.js');
 const roomHandler = require('./controllers/room.js');
 const registerHandler = require('./controllers/register.js');
-const { forgotPassword } = require('./controllers/register.js');
 
 const db = config.get('mongoURI')
 
@@ -173,8 +172,8 @@ app.get('/login', redirectHome, registerHandler.loginPage)
 app.post('/login', redirectHome, registerHandler.login)
 app.post('/logout', registerHandler.logout)
 
-app.get('/forgotPassword', redirectHome, registerHandler.forgotPassword)
-app.post('/changePassword', registerHandler.changePassword)
+app.get('/forgotPassword', redirectHome, registerHandler.forgotPasswordPage)
+app.post('/forgotPassword', registerHandler.forgotPassword)
 
 //We can delete this b/c only users who signed up can use the chatroom, so we don't need to check if they entered a username
 // app.post('/usernameSet', roomHandler.usernameSet); 

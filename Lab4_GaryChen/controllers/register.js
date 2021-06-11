@@ -60,40 +60,24 @@ function loginPage(req, res) {
 }
 
 //GET request to render forgotPassword page
-function forgotPassword(req, res) {
-    var fail = req.session.fail
-    var warning = ""
-    if (fail) {
-        warning = "Invalid email or password."
-    }
-
-    res.render('forgotPassword', { err: warning })
+function forgotPasswordPage(req, res) {
+    res.render('forgotPassword')
 }
 
-async function changePassword(event) {
-    var email = req.body.email
-    var password = req.body.password
-
-    var result = await fetch('/api/change-password', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            email: email,
-            newpassword: password,
-            token: localStorage.getItem('token')
-        })
-    }).then((res) => res.json())
-
-    if (result.status === 'ok') {
-        // everythign went fine
-        alert('Success'),
+async function forgotPassword(req,res) {
+    var password = await bcrypt.hash(req.body.password, 10)
+    Users.findOneAndUpdate(
+        { email: req.body.email },
+        { $set: {password: password} }
+    ).then( user =>{
+        console.log(`Password changed.`)
         res.redirect('/login')
-    } else {
-        alert(result.error)
-    }
+    }).catch( user =>{
+        console.log("Cannot find user with the email.")
+        res.redirect('/login')
+    })
 }
+
 
 //POST request to authenticate user credentials
 async function login(req, res) {
@@ -132,6 +116,6 @@ module.exports = {
     loginPage,
     login,
     logout,
-    forgotPassword,
-    changePassword
+    forgotPasswordPage,
+    forgotPassword
 }

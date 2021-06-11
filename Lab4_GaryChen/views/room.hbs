@@ -150,8 +150,8 @@
     //Each time socket detects "newMessage" event from the server, it will refresh the page.
     const socket = io('http://localhost:8080')
     socket.on('newMessage', data => {
-        location.reload()
         console.log(`New message received for chatroom ${roomName}. Refreshing page...`)
+        fetch(`/${roomName}`)
     })
 
     socket.on('deleteMessage', _ => location.reload() )

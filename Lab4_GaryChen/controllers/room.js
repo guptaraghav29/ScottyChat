@@ -90,6 +90,7 @@ io.on('connection', socket => {
 
 //GET request to display existing chat room
 function getRoom(request, response){
+    console.log("Fetching room pls wait")
     //Use the chat room ID to fetch corresponding document from database
     Room.findOne({ name: request.params.roomName })
         .lean()
