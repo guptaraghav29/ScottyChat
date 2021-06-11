@@ -1,0 +1,4 @@
+{
+    "mongoURI" : "mongodb+srv://claire:WebDevelop21@cluster0.ybfof.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "TOP-SECRET": "CS110WEBDEVELOPMENT"
+}
