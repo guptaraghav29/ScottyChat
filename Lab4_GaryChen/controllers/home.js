@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-//By Gary Chen
-
-=======
->>>>>>> 2477ff60ada49ac9378a1dffe6f77db4f601178e
 //Get MongoDB Schema
 const Room = require('../models/Room')
 

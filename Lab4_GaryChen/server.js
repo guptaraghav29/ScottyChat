@@ -13,19 +13,13 @@ const hbs       = require('express-handlebars');
 const path      = require('path');
 const config    = require('config')
 const mongoose  = require('mongoose')
-<<<<<<< HEAD
-=======
 const session   = require('express-session')
->>>>>>> 2477ff60ada49ac9378a1dffe6f77db4f601178e
 
 // import handlers
 const homeHandler = require('./controllers/home.js');
 const roomHandler = require('./controllers/room.js');
-<<<<<<< HEAD
-=======
 const registerHandler = require('./controllers/register.js');
 
->>>>>>> 2477ff60ada49ac9378a1dffe6f77db4f601178e
 const db = config.get('mongoURI')
 
 mongoose   
@@ -39,14 +33,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
-<<<<<<< HEAD
-=======
 app.use(session({
     secret: config.get('TOP-SECRET'),
     resave: false,
     saveUninitialized: false
 }))
->>>>>>> 2477ff60ada49ac9378a1dffe6f77db4f601178e
 
 //View engine
 app.engine('hbs', hbs({
@@ -57,12 +48,6 @@ app.engine('hbs', hbs({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-<<<<<<< HEAD
-//All routes
-app.get('/', homeHandler.getHome);
-app.post('/create', roomHandler.createRoom);
-app.post('/usernameSet', roomHandler.usernameSet);
-=======
 //Middleware: Check if the user is logged in
 const redirectRegister = (req, res, next) => {
     if( req.session.email ){
@@ -99,7 +84,6 @@ app.get('/forgot', (req, res) => {
 //We can delete this b/c only users who signed up can use the chatroom, so we don't need to check if they entered a username
 // app.post('/usernameSet', roomHandler.usernameSet); 
 
->>>>>>> 2477ff60ada49ac9378a1dffe6f77db4f601178e
 app.get('/:roomName/messages', roomHandler.showAllMessage);
 app.get('/:roomName', roomHandler.getRoom);
 

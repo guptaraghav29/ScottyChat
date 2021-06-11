@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "name": "assignment4",
-=======
-  "name": "final",
->>>>>>> 2477ff60ada49ac9378a1dffe6f77db4f601178e
   "version": "1.0.0",
   "description": "Stencil code for BrownCS1320 Assignment4",
   "main": "server.js",
@@ -16,21 +12,13 @@
     "config": "^3.3.6",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
-<<<<<<< HEAD
     "mongoose": "^5.12.13"
-  },
-  "devDependencies": {
-    "cookie-parser": "^1.4.5",
-    "eslint": "^6.8.0",
-=======
-    "mongoose": "^5.12.10"
   },
   "devDependencies": {
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.5",
     "eslint": "^6.8.0",
     "express-session": "^1.17.2",
->>>>>>> 2477ff60ada49ac9378a1dffe6f77db4f601178e
     "nodemon": "^2.0.7",
     "socket.io": "^4.1.2",
     "stylelint": "^13.2.0",
