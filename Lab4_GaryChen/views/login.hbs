@@ -1,0 +1,40 @@
+<head>
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style type="text/css">
+        input {
+            min-width: 300px;
+            border-radius: 20px;
+            margin: 10px;
+            padding: 30px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+
+
+<body style="text-align: center; padding-top: 200px; background-image: repeating-radial-gradient(rgb(243, 190, 200),#b6c5f1);">
+    <h1 class="display-1"> Welcome! Please login! </h1>
+
+    {{#if err }}
+    <h3 id="warn"> {{ err }} </h3>
+    {{/if}}
+
+    <form action="/login" method="post">
+        Email:
+        <input id="userInput1" name="email" placeholder="john@appleseed.com">
+        Password:
+        <input id="userInput6" name="password" placeholder="password">
+        <button id="send" type="submit">Send</button>
+    </form>
+
+    <br>
+    <br>
+    <a style="font-size: 20px;" href="register"> New User? Register Here </a>
+    <br>
+    <a style="font-size: 20px;" href="forgotPassword"> Forgot Password </a>
+</body>

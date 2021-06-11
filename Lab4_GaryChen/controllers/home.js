@@ -1,5 +1,3 @@
-//By Gary Chen
-
 //Get MongoDB Schema
 const Room = require('../models/Room')
 

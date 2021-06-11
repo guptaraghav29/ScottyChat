@@ -5,10 +5,14 @@ const Schema = mongoose.Schema
 const RoomSchema = new Schema({
     name: { type: String, required: true },
     messages: [{
-        userName: { type: String },
-        message: { type: String },
-        date: { type: Date, 
-                default: Date.now() }
+        username: { 
+                    first: { type: String, required: true },
+                    last:  { type: String, required: true } },
+        message:  { type: String },
+        userID:   { type: Schema.Types.ObjectId, 
+                    required: true, 
+                    ref: 'Users' },
+        date:     { type: Date, default: Date.now() }
     }]
 })
 
