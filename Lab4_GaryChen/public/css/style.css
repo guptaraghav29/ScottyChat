@@ -54,13 +54,17 @@
     margin-left: 0px;
     max-width: 80%;
     justify-content: left;
-    background: linear-gradient(rgb(243, 190, 200),#b6c5f1);
+    background: white;
 }
+input {
+    outline:none;
+   }
 
 .username{
-    color: #b6c5f1;
+    color: white;
     font-size: 20px;
     font-weight: bold;
+    padding-right: 10px;
 }
 
 .messageDate{
@@ -153,6 +157,7 @@
     border-radius: 30px;
     padding: 20px;
     overflow:auto;
+    background: linear-gradient(rgb(243, 190, 200),#b6c5f1);
     /*  */
     
 }
