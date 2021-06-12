@@ -25,7 +25,15 @@
     align-items: center;
 }
 
+@keyframes expand {
+    from { transform: scale(0);}
+    to { transform: scale(1);}
+  }
 
+.allMessages{
+    transform-origin: left bottom;
+    animation: expand .3s ease-in-out;
+}
 
 .trash {
     vertical-align: baseline;
