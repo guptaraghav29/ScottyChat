@@ -15,11 +15,8 @@ async function signup(req, res) {
     var phone = req.body.phone
     var password = await bcrypt.hash(req.body.password, 10)
 
-    console.log(`emal: ${req.body.email} password: ${req.body.password}`)
-
     var result = await Users.findOne({
         email: email,
-        password: password
     })
 
     if (result) {

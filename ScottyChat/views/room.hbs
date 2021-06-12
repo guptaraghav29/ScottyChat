@@ -36,11 +36,23 @@
 </div>
     {{!-- This div contains an input box and a send button --}}
     <div class="inputBox">
-        
-            <input id="userInput" name="message" placeholder="Type something...">
-            <button type="button" id="send"  >Send</button>
-        
+        <input id="userInput" name="message" placeholder="Type something...">
+        <button type="button" id="send"  >Send</button>
     </div>
+
+    <template id="messageTemplate">
+        <div class="allMessages">
+            <div class="messageContainer">
+                <div class="username">{{this.username.first}}</div>
+                <div class="messageDate">&nbsp;{{date}}</div>
+                <img class="trash" src="/images/trash.jpg" name="{{{message}}}" alt="{{{userID}}}">
+                <img class="edit" src="/images/edit.png" name="{{{message}}}" alt="{{{userID}}}">
+            </div>
+            <div class="message"> 
+                {{message}} 
+            </div>
+        </div>
+    </template>
 </div>
 
 
@@ -87,20 +99,20 @@
     function sendMessage( item ) {
         //Each time the user press send, socket will emit an event and pass
         //user's message, along with info that is inside the cookies
-        console.log(`********** msg: ${newMessage}, roomName: ${roomName}, sessID: ${sessionUserID}`)
 
         socket.emit('newMessage', {
             message:  newMessage,
             roomName: roomName,
             sessionUserID: sessionUserID
         })
+
     }
 
     function sendMessageEnter( event ){
-        console.log("ENter press")
         if( event.key === "Enter" ){
             event.preventDefault()
             document.getElementById("send").click()
+            event.target.value = ""
         }
     }
 
@@ -160,7 +172,7 @@
     const socket = io('http://localhost:8080')
     socket.on('newMessage', data => {
         console.log(`New message received for chatroom ${roomName}. Refreshing page...`)
-        var tempChild = document.querySelector(".allMessages").cloneNode(true)
+        var tempChild = document.getElementById("messageTemplate").content.cloneNode(true)
         tempChild.querySelector(".message").innerHTML = data.newMessage
         tempChild.querySelector(".username").innerHTML = data.first
         tempChild.querySelector(".messageDate").innerHTML = data.date
